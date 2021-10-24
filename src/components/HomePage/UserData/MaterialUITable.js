@@ -3,12 +3,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Edit2, Trash2 } from "react-feather";
 import UserContext from "../../../context/user-context";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MaterialUITable = () => {
   const { userdata, setUserData } = useContext(UserContext);
 
+  const notifyFailure = () => toast.error("User Deleted!!");
+
   const handleDelete = (id) => {
     setUserData(userdata.filter((item) => item.id !== id));
+    notifyFailure();
   };
 
   const columns = [
@@ -64,15 +69,19 @@ const MaterialUITable = () => {
   }));
 
   return (
-    <div className="h-5/6 pt-8 mt-2">
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-      />
-    </div>
+    <>
+      <ToastContainer />
+
+      <div className="h-5/6 pt-8 mt-2">
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={9}
+          rowsPerPageOptions={[9]}
+          checkboxSelection
+        />
+      </div>
+    </>
   );
 };
 

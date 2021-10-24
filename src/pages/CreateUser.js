@@ -3,6 +3,8 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import UserContext from "../context/user-context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateUser = () => {
   const { userdata, setUserData, setIsUserCreated } = useContext(UserContext);
@@ -12,6 +14,8 @@ const CreateUser = () => {
   const [email, setEmail] = useState("");
 
   const history = useHistory();
+
+  const notifyFailure = () => toast.error("Fill all fields");
 
   const createUserApiCall = async () => {
     const response = await axios.post(
@@ -28,22 +32,28 @@ const CreateUser = () => {
   };
 
   const handleSubmit = () => {
-    setIsUserCreated(true);
-    const addUser = async () => {
-      const res = await createUserApiCall();
-      if (res) {
-        setUserData([...userdata, res.data]);
-      }
-    };
-    addUser();
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    history.push("/");
+    if (firstName === "" || lastName === "" || email === "") {
+      notifyFailure();
+    } else {
+      setIsUserCreated(true);
+      const addUser = async () => {
+        const res = await createUserApiCall();
+        if (res) {
+          setUserData([...userdata, res.data]);
+        }
+      };
+      addUser();
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setIsUserCreated(true);
+      history.push("/");
+    }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className="max-w-5xl mx-auto mt-24 text-center">
         <div>
           <h1 className="text-3xl font-bold">Create New User</h1>
