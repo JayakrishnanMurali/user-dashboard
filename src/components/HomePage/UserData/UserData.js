@@ -7,7 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UserData = () => {
-  const { isUserCreated, isUserUpdated } = useContext(UserContext);
+  const { isUserCreated, isUserUpdated, setIsUserCreated } =
+    useContext(UserContext);
 
   const notifyCreated = () => {
     toast.success("User Created Successfully!");
@@ -24,12 +25,12 @@ const UserData = () => {
             <h1 className="text-4xl font-bold">Dashboard</h1>
             <p className="text-gray-500 ml-1">Regestired Users</p>
           </div>
-          <div className="flex mr-60 bg-blue-500 cursor-pointer transition-all duration-300 ease-in-out hover:bg-blue-700 py-3 px-4 items-center justify-center rounded-full">
-            <Plus className="text-white" />
-            <Link to="/create-user" className="text-white text-lg ml-2">
+          <Link to="/create-user" className="text-white text-lg ml-2">
+            <div className="flex mr-60 bg-blue-500 cursor-pointer transition-all duration-300 ease-in-out hover:bg-blue-700 py-3 px-4 items-center justify-center rounded-full">
+              <Plus className="text-white" />
               Create User
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
         <MaterialUITable />
         {isUserCreated ? notifyCreated() : ""}
