@@ -5,6 +5,7 @@ import UserContext from "../../../context/user-context";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const MaterialUITable = () => {
   const { userdata, setUserData, setIsUserCreated, setIsUserUpdated } =
@@ -12,7 +13,12 @@ const MaterialUITable = () => {
 
   const notifyFailure = () => toast.error("User Deleted!!");
 
+  const deleteUserApiCall = async (id) => {
+    await axios.delete(`https://reqres.in/api/users/${id}`);
+  };
+
   const handleDelete = (id) => {
+    deleteUserApiCall(id);
     setUserData(userdata.filter((item) => item.id !== id));
     notifyFailure();
     setIsUserCreated(false);
