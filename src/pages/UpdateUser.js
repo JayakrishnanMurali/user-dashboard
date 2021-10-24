@@ -7,14 +7,15 @@ import UserContext from "../context/user-context";
 
 const UpdateUser = () => {
   const { userdata, setUserData } = useContext(UserContext);
+  const { id } = useParams();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  var currentUser = userdata.find((item) => item.id == id);
+
+  const [firstName, setFirstName] = useState(currentUser.first_name);
+  const [lastName, setLastName] = useState(currentUser.last_name);
+  const [email, setEmail] = useState(currentUser.email);
 
   const history = useHistory();
-
-  const { id } = useParams();
 
   const updateApiCall = async () => {
     const response = await axios.put(`https://reqres.in/api/users/${id}`, {
@@ -26,13 +27,22 @@ const UpdateUser = () => {
   };
 
   const handleSubmit = () => {
-    // const addUser = async () => {
-    //   const res = await createUserApiCall();
-    //   if (res) {
-    //     setUserData([...userdata, res.data]);
-    //   }
-    // };
-    // addUser();
+    const updateUser = async () => {
+      const res = await updateApiCall();
+      if (res) {
+        // console.log(res.data);
+        const updatedUser = userdata.map((item) => {
+          if (item.id == id) {
+            item.first_name = firstName;
+            item.last_name = lastName;
+            item.email = email;
+          }
+          return item;
+        });
+        setUserData(updatedUser);
+      }
+    };
+    updateUser();
     setFirstName("");
     setLastName("");
     setEmail("");
