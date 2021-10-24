@@ -1,9 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import UserContext from "../context/user-context";
 
 const CreateUser = () => {
+  const { userdata, setUserData } = useContext(UserContext);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,16 +20,18 @@ const CreateUser = () => {
         first_name: firstName,
         last_name: lastName,
         email: email,
+        avatar:
+          "https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?b=1&k=20&m=1300845620&s=170667a&w=0&h=JbOeyFgAc6-3jmptv6mzXpGcAd_8xqkQa_oUK2viFr8=",
       }
     );
     return response;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const addUser = async () => {
       const res = await createUserApiCall();
       if (res) {
-        console.log("Checking: ", res.data);
+        setUserData([...userdata, res.data]);
       }
     };
     addUser();

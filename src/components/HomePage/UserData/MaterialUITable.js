@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Edit2, Trash2 } from "react-feather";
-import axios from "axios";
+import UserContext from "../../../context/user-context";
 
 const MaterialUITable = () => {
+  const { userdata } = useContext(UserContext);
+
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
     {
@@ -42,24 +44,6 @@ const MaterialUITable = () => {
       },
     },
   ];
-
-  const getUsersApiCall = async () => {
-    const response = await axios.get("https://reqres.in/api/users?per_page=10");
-    return response;
-  };
-
-  const [userdata, setUserData] = useState([]);
-  useEffect(() => {
-    const getAllUsers = async () => {
-      const res = await getUsersApiCall();
-      if (res) {
-        setUserData(res.data.data);
-      }
-    };
-    getAllUsers();
-  }, []);
-
-  console.table("Userdata: ", userdata);
 
   const rows = userdata.map(({ id, avatar, first_name, last_name, email }) => ({
     id: id,
