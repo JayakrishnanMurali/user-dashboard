@@ -44,7 +44,7 @@ const MaterialUITable = () => {
   ];
 
   const getUsersApiCall = async () => {
-    const response = await axios.get("https://reqres.in/api/users?page=2");
+    const response = await axios.get("https://reqres.in/api/users?per_page=10");
     return response;
   };
 
