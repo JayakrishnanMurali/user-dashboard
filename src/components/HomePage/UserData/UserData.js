@@ -7,8 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UserData = () => {
-  const { isUserCreated, isUserUpdated, setIsUserCreated } =
-    useContext(UserContext);
+  const { isUserCreated, isUserUpdated } = useContext(UserContext);
 
   const notifyCreated = () => {
     toast.success("User Created Successfully!");

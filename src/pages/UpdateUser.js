@@ -8,7 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UpdateUser = () => {
-  const { userdata, setUserData, setIsUserUpdated } = useContext(UserContext);
+  const { userdata, setUserData, setIsUserUpdated, setIsUserCreated } =
+    useContext(UserContext);
   const { id } = useParams();
 
   var currentUser = userdata.find((item) => item.id == id);
@@ -49,6 +50,7 @@ const UpdateUser = () => {
         }
       };
       setIsUserUpdated(true);
+      setIsUserCreated(false);
       updateUser();
       setFirstName("");
       setLastName("");

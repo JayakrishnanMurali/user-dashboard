@@ -7,13 +7,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MaterialUITable = () => {
-  const { userdata, setUserData } = useContext(UserContext);
+  const { userdata, setUserData, setIsUserCreated, setIsUserUpdated } =
+    useContext(UserContext);
 
   const notifyFailure = () => toast.error("User Deleted!!");
 
   const handleDelete = (id) => {
     setUserData(userdata.filter((item) => item.id !== id));
     notifyFailure();
+    setIsUserCreated(false);
+    setIsUserUpdated(false);
   };
 
   const columns = [

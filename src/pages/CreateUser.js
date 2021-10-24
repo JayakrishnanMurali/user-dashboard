@@ -7,7 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateUser = () => {
-  const { userdata, setUserData, setIsUserCreated } = useContext(UserContext);
+  const { userdata, setUserData, setIsUserCreated, setIsUserUpdated } =
+    useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -47,6 +48,7 @@ const CreateUser = () => {
       setLastName("");
       setEmail("");
       setIsUserCreated(true);
+      setIsUserUpdated(false);
       history.push("/");
     }
   };
