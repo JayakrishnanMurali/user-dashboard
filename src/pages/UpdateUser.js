@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../context/user-context";
 
 const UpdateUser = () => {
-  const { userdata, setUserData } = useContext(UserContext);
+  const { userdata, setUserData, setIsUserUpdated } = useContext(UserContext);
   const { id } = useParams();
 
   var currentUser = userdata.find((item) => item.id == id);
@@ -42,6 +42,7 @@ const UpdateUser = () => {
         setUserData(updatedUser);
       }
     };
+    setIsUserUpdated(true);
     updateUser();
     setFirstName("");
     setLastName("");
@@ -89,7 +90,7 @@ const UpdateUser = () => {
               onClick={() => handleSubmit()}
               className="ml-28 bg-blue-400 hover:bg-blue-500 transition-all duration-300 ease-in-out py-2 px-6 rounded-lg mt-4 max-w-xs mx-auto text-white "
             >
-              Create
+              Update
             </button>
             <Link
               to={"/"}

@@ -7,6 +7,9 @@ const UserState = (props) => {
     return response;
   };
 
+  const [isUserCreated, setIsUserCreated] = useState(false);
+  const [isUserUpdated, setIsUserUpdated] = useState(false);
+
   const [userdata, setUserData] = useState([]);
   useEffect(() => {
     const getAllUsers = async () => {
@@ -21,9 +24,12 @@ const UserState = (props) => {
   return (
     <UserContext.Provider
       value={{
-        message: "Hello World!",
         userdata: userdata,
         setUserData,
+        isUserCreated: isUserCreated,
+        setIsUserCreated,
+        isUserUpdated: isUserUpdated,
+        setIsUserUpdated,
       }}
     >
       {props.children}

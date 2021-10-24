@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Plus } from "react-feather";
 import { Link } from "react-router-dom";
 import MaterialUITable from "./MaterialUITable";
+import UserContext from "../../../context/user-context";
+import Alerts from "../../Alerts/Alerts";
 
 const UserData = () => {
+  const { isUserCreated, isUserUpdated } = useContext(UserContext);
   return (
     <div className="h-screen overflow-hidden">
       <div className="px-8 pt-16 items-center flex justify-between">
@@ -20,6 +23,16 @@ const UserData = () => {
       </div>
 
       <MaterialUITable />
+      {isUserCreated ? (
+        <Alerts message={"User Created Successfully!!"} severity={"success"} />
+      ) : (
+        ""
+      )}
+      {isUserUpdated ? (
+        <Alerts message={"User Updated Successfully!!"} severity={"success"} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
