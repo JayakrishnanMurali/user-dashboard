@@ -49,6 +49,7 @@ const MaterialUITable = () => {
       field: "actions",
       headerName: "Actions",
       width: 400,
+      sortable: false,
       renderCell: (params) => {
         return (
           <div className="flex items-center cursor-pointer">
@@ -90,7 +91,6 @@ const MaterialUITable = () => {
           columns={columns}
           pageSize={9}
           rowsPerPageOptions={[9]}
-          checkboxSelection
         />
       </div>
     </>
