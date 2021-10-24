@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import UserContext from "../context/user-context";
@@ -13,19 +14,16 @@ const UpdateUser = () => {
 
   const history = useHistory();
 
-  //   const createUserApiCall = async () => {
-  //     const response = await axios.post(
-  //       "https://reqres.in/api/users?per_page=10",
-  //       {
-  //         first_name: firstName,
-  //         last_name: lastName,
-  //         email: email,
-  //         avatar:
-  //           "https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?b=1&k=20&m=1300845620&s=170667a&w=0&h=JbOeyFgAc6-3jmptv6mzXpGcAd_8xqkQa_oUK2viFr8=",
-  //       }
-  //     );
-  //     return response;
-  //   };
+  const { id } = useParams();
+
+  const updateApiCall = async () => {
+    const response = await axios.put(`https://reqres.in/api/users/${id}`, {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+    });
+    return response;
+  };
 
   const handleSubmit = () => {
     // const addUser = async () => {
