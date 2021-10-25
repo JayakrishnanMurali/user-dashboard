@@ -4,11 +4,11 @@ import UserData from "./UserData/UserData";
 
 const HomePageComponent = () => {
   return (
-    <div className="grid grid-cols-5">
-      <div className=" h-screen">
+    <div className="grid lg:grid-cols-5">
+      <div className=" h-screen hidden lg:block">
         <Sidebar />
       </div>
-      <div className="bg-gray-100 col-span-4 h-screen">
+      <div className="lg:bg-gray-100 col-span-4 h-screen">
         <UserData />
       </div>
     </div>

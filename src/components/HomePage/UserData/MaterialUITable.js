@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Edit2, Trash2 } from "react-feather";
+import { Trash2 } from "react-feather";
 import UserContext from "../../../context/user-context";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -54,9 +54,10 @@ const MaterialUITable = () => {
         return (
           <div className="flex items-center cursor-pointer">
             <Link to={"/update-user/" + params.row.id}>
-              <div className="bg-gray-200  transition-all ease-in-out duration-300 hover:bg-green-500 w-10 h-10 grid place-items-center rounded-lg mr-4">
+              <div className="bg-green-400  transition-all ease-in-out duration-300 hover:bg-green-500 w-20 h-10 grid place-items-center rounded-lg mr-4">
                 <button>
-                  <Edit2 className="w-5 h-5" />
+                  {/* <Edit2 className="w-5 h-5" /> */}
+                  <h1 className="text-white text-sm">Edit</h1>
                 </button>
               </div>
             </Link>
@@ -87,7 +88,7 @@ const MaterialUITable = () => {
 
       <div className="h-3/4 pt-8 mt-2">
         <DataGrid
-          className="ml-8 mr-44 "
+          className="ml-8  bg-gray-100 mr-4 sm:mr-12  lg:mr-44 "
           rows={rows}
           columns={columns}
           pageSize={7}

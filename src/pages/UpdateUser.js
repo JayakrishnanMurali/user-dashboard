@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,15 +8,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UpdateUser = () => {
+  useEffect(() => {
+    window.addEventListener("beforeunload", alertUser);
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+    };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+  };
+
   const { userdata, setUserData, setIsUserUpdated, setIsUserCreated } =
     useContext(UserContext);
   const { id } = useParams();
 
   var currentUser = userdata.find((item) => item.id == id);
 
-  const [firstName, setFirstName] = useState(currentUser.first_name);
-  const [lastName, setLastName] = useState(currentUser.last_name);
-  const [email, setEmail] = useState(currentUser.email);
+  const [firstName, setFirstName] = useState(currentUser?.first_name);
+  const [lastName, setLastName] = useState(currentUser?.last_name);
+  const [email, setEmail] = useState(currentUser?.email);
 
   const history = useHistory();
 
