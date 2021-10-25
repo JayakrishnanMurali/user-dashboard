@@ -48,7 +48,7 @@ const MaterialUITable = () => {
     {
       field: "actions",
       headerName: "Actions",
-      width: 400,
+      width: 319,
       sortable: false,
       renderCell: (params) => {
         return (
@@ -85,12 +85,13 @@ const MaterialUITable = () => {
     <>
       <ToastContainer />
 
-      <div className="h-5/6 pt-8 mt-2">
+      <div className="h-3/4 pt-8 mt-2">
         <DataGrid
+          className="ml-8 mr-44 "
           rows={rows}
           columns={columns}
-          pageSize={9}
-          rowsPerPageOptions={[9]}
+          pageSize={7}
+          rowsPerPageOptions={[7]}
         />
       </div>
     </>
