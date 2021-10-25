@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./Sidebar/Sidebar";
+import Sidebar from "./SideBar/Sidebar";
 import UserData from "./UserData/UserData";
 
 const HomePageComponent = () => {
