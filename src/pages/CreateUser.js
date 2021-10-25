@@ -61,39 +61,49 @@ const CreateUser = () => {
           <h1 className="text-3xl font-bold">Create New User</h1>
         </div>
 
-        <div className="mt-8 bg-gray-100 max-w-3xl mx-auto shadow-md p-8">
+        <div
+          className="mt-8 bg-gray-100 
+         h-96 grid place-items-center sm:max-w-md  md:max-w-3xl
+        mx-auto shadow-md p-8"
+        >
           <div className="flex flex-col">
             <label className="text-gray-500 font-medium" htmlFor="">
-              First Name:
-              <input
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                type="text"
-                className="border ml-4 outline-none text-gray-500 p-1"
-              />
+              <div className="flex">
+                First Name:
+                <input
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  type="text"
+                  className="border ml-4 outline-none text-gray-500 p-1"
+                />
+              </div>
             </label>
             <label className="text-gray-500 font-medium my-4" htmlFor="">
-              Last Name:
-              <input
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                type="text"
-                className="border ml-4 outline-none text-gray-500 p-1"
-              />
+              <div className="flex">
+                Last Name:
+                <input
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  type="text"
+                  className="border ml-4 outline-none text-gray-500 p-1"
+                />
+              </div>
             </label>
             <label className="text-gray-500 font-medium" htmlFor="">
-              Email:
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                className="border ml-14 outline-none text-gray-500 p-1"
-              />
+              <div className="flex">
+                Email:
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  className="border ml-14 outline-none text-gray-500 p-1"
+                />
+              </div>
             </label>
-            <div>
+            <div className="flex">
               <button
                 onClick={() => handleSubmit()}
-                className="ml-28 bg-blue-400 hover:bg-blue-500 transition-all duration-300 ease-in-out py-2 px-6 rounded-lg mt-4 max-w-xs mx-auto text-white "
+                className="ml-12 sm:ml-24 bg-blue-400 hover:bg-blue-500 transition-all duration-300 ease-in-out py-2 px-6 rounded-lg mt-4 max-w-xs mx-auto text-white "
               >
                 Create
               </button>
